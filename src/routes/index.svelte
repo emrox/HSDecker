@@ -24,8 +24,9 @@
 </script>
 
 <script>
-  export let cards;
+  import Card from '../components/Card.svelte';
 
+  export let cards;
   export const randomDeck = cards.sort(() => 0.5 - Math.random()).slice(0, 30)
 </script>
 
@@ -40,12 +41,8 @@
 
 <ul>
   {#each randomDeck as card}
-    <li class="card">
-      <h3>{card.name}</h3>
-      <blockquote>{@html card.flavor}</blockquote>
-      {#if card.cost}<span class="card__cost">{card.cost}</span>{/if}
-      {#if card.attack}<span class="card__attack">{card.attack}</span>{/if}
-      {#if card.durability}<span class="card__durability">{card.durability}</span>{/if}
+    <li>
+      <Card card={card} />
     </li>
   {/each}
 </ul>
