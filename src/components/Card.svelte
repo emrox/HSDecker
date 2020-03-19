@@ -38,6 +38,10 @@ h3 {
   color: white;
 }
 
+.card.type--spell h3 {
+  width: 254px;
+}
+
 h3 .fadeout {
   cursor: default;
   position: absolute;
@@ -46,10 +50,6 @@ h3 .fadeout {
   padding: 2px 7px;
   font-size: 16px;
   background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 75%);
-}
-
-blockquote {
-  display: none;
 }
 
 .count,
@@ -64,13 +64,13 @@ blockquote {
   cursor: default;
 }
 
-.cost,
+.count,
 .attack,
 .health {
   border-left: 1px solid #000;
 }
 .count {
-  background-color: darkblue;
+  background-color: #313131;
 }
 
 .cost {
@@ -92,8 +92,8 @@ blockquote {
 .rarity--legendary { background-color: #855c25; }
 </style>
 
-<div class="card" id="card-{card.id}">
-  <span class="count rarity--{card.rarity.toLowerCase()}" title={card.rarity}>{count || ''}</span>
+<div class="card type--{card.type.toLowerCase()}" id="card-{card.id}">
+  <span class="cost rarity--{card.rarity.toLowerCase()}" title={card.rarity}>{card.cost || '0'}</span>
 
   <h3 title={card.name} style="background-image: url('/tiles/Tiles/{card.id}.png')">
     <div class="fadeout">
@@ -101,9 +101,9 @@ blockquote {
     </div>
   </h3>
 
-  <blockquote>{@html card.text}</blockquote>
-
-  <span class="cost">{card.cost || '0'}</span>
-  <span class="attack">{card.attack || '-'}</span>
-  <span class="health">{card.health || card.durability || '-'}</span>
+  {#if card.type !== 'SPELL'}
+    <span class="attack">{card.attack || '0'}</span>
+    <span class="health">{card.health || card.durability || '-'}</span>
+  {/if}
+  <span class="count">{card.rarity === 'LEGENDARY' ? '⭐' : count }</span>
 </div>
