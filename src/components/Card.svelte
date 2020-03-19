@@ -77,11 +77,11 @@ blockquote {
 }
 
 .attack {
-  background-color: darkred;
+  background-color: olive;
 }
 
 .health {
-  background-color: olive;
+  background-color: darkred;
 }
 </style>
 
