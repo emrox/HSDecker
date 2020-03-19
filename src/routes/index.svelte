@@ -31,6 +31,11 @@
 </script>
 
 <style>
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
 </style>
 
 <svelte:head>
@@ -42,7 +47,7 @@
 <ul>
   {#each randomDeck as card}
     <li>
-      <Card card={card} />
+      <Card count="1" card={card} />
     </li>
   {/each}
 </ul>
