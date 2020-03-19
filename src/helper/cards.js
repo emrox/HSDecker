@@ -1,6 +1,8 @@
-export async function cards (context) {
+export async function getCards (context, reduce = true) {
   const cardsRes = await context.fetch('data/cards.collectible.json');
   const allCards = await cardsRes.json();
+
+  if (!reduce) { return allCards; }
 
   const cards = allCards.reduce((acc, card) => {
     if (

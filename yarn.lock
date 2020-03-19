@@ -727,6 +727,11 @@ debug@2.6.9, debug@^2.2.0, debug@^2.3.3:
   dependencies:
     ms "2.0.0"
 
+deckstrings@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/deckstrings/-/deckstrings-2.1.0.tgz#4e1b042cea1ee0730213852d0d29c045d92c9ce0"
+  integrity sha512-ggPKNckux5aG/Hm+CI74kuzINMGI73dnJFsU9lQAJGTwzCVFbGSac1G+i4wuArgBYrT9WV8LVEABxrCg4YKy3g==
+
 decode-uri-component@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"

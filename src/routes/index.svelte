@@ -1,8 +1,8 @@
 <script context="module">
-  import { cards } from '../helper/cards.js';
+  import { getCards } from '../helper/cards.js';
 
   export async function preload(page, session) {
-    return { cards: await cards(this) };
+    return { cards: await getCards(this) };
   }
 </script>
 
