@@ -43,6 +43,10 @@
     margin: 0;
     padding: 0;
   }
+
+  li {
+    margin-bottom: 1px;
+  }
 </style>
 
 <svelte:head>
