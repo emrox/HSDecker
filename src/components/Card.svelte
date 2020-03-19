@@ -61,6 +61,7 @@ blockquote {
   height: 26px;
   text-align: center;
   color: whitesmoke;
+  cursor: default;
 }
 
 .cost,
@@ -83,10 +84,16 @@ blockquote {
 .health {
   background-color: darkred;
 }
+
+.rarity--free { background-color: #858585; }
+.rarity--common { background-color: #858585; }
+.rarity--rare { background-color: #315376; }
+.rarity--epic { background-color: #644c82; }
+.rarity--legendary { background-color: #855c25; }
 </style>
 
 <div class="card" id="card-{card.id}">
-  <span class="count">{count || ''}</span>
+  <span class="count rarity--{card.rarity.toLowerCase()}" title={card.rarity}>{count || ''}</span>
 
   <h3 title={card.name} style="background-image: url('/tiles/Tiles/{card.id}.png')">
     <div class="fadeout">
