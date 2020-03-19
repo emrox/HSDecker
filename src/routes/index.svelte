@@ -1,25 +1,8 @@
 <script context="module">
+  import { cards } from '../helper/cards.js'
+
   export async function preload(page, session) {
-    const cardsRes = await this.fetch('data/cards.collectible.json');
-    const allCards = await cardsRes.json();
-
-    const cards = allCards.reduce((acc, card) => {
-      if (
-        card.collectible &&
-        (
-          (card.type === 'HERO' && card.cost) ||
-          (card.type === 'MINION') ||
-          (card.type === 'SPELL') ||
-          (card.type === 'WEAPON')
-        )
-      ) {
-        acc.push(card)
-      }
-
-      return acc
-    }, [])
-
-    return { cards }
+    return { cards: await cards(this) };
   }
 </script>
 
