@@ -3,9 +3,19 @@
 
   export async function preload(page, session) {
     const cards = await getCards(this);
-    const randomDeck = cards.sort(() => 0.5 - Math.random()).slice(0, 30);
 
-    return { randomDeck };
+    const classes = cards.reduce((a, c) => {
+      if(a.indexOf(c.cardClass) < 0 && c.cardClass !== 'NEUTRAL') { a.push(c.cardClass); };
+
+      return a;
+    }, []);
+    const deckClass = classes.sort(() => 0.5 - Math.random())[0];
+    const possibleCardClasses = ['NEUTRAL', deckClass];
+    const classCards = cards.reduce((a, c) => { if(possibleCardClasses.includes(c.cardClass)) { a.push(c); }; return a; }, []);
+
+    const randomDeck = classCards.sort(() => 0.5 - Math.random()).slice(0, 30);
+
+    return { deckClass, randomDeck };
   }
 </script>
 
@@ -14,6 +24,7 @@
   import Card from '../components/Card.svelte';
 
   export let randomDeck;
+  export let deckClass;
 </script>
 
 <style>
@@ -32,7 +43,7 @@
 	<title>HSdecker</title>
 </svelte:head>
 
-<h1>Random Deck</h1>
+<h1>Random Deck {deckClass}</h1>
 
 <ul>
   {#each deckSort(randomDeck) as card}
