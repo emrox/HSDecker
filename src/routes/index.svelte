@@ -30,15 +30,30 @@
 
 <script>
   import { deckSort } from '../helper/deck.js';
+  import { CLASS_HEROS } from '../helper/constants.js';
   import Card from '../components/Card.svelte';
+  import { encode } from 'deckstrings';
 
   const capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 
   export let randomDeck;
   export let deckClass;
+
+  const deckCodeData = {
+    cards: randomDeck.map((card) => ([card.card.dbfId, card.count])),
+    heroes: CLASS_HEROS[deckClass],
+    format: 2,
+  };
+
+  export let deckCode = encode(deckCodeData);
 </script>
 
 <style>
+  input {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
   ul {
     list-style: none;
     margin: 0;
@@ -55,6 +70,8 @@
 </svelte:head>
 
 <h1>Random {capitalize(deckClass)} Deck</h1>
+
+<input type="text" value={deckCode} />
 
 <ul>
   {#each deckSort(randomDeck) as {count, card}}
