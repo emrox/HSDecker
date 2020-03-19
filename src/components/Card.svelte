@@ -96,7 +96,7 @@ blockquote {
 
   <blockquote>{@html card.text}</blockquote>
 
-  <span class="cost">{card.cost || ''}</span>
+  <span class="cost">{card.cost || '0'}</span>
   <span class="attack">{card.attack || '-'}</span>
   <span class="health">{card.health || card.durability || '-'}</span>
 </div>

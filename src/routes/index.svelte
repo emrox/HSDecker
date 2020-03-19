@@ -29,7 +29,12 @@
   import Card from '../components/Card.svelte';
 
   export let cards;
-  export const randomDeck = cards.sort(() => 0.5 - Math.random()).slice(0, 30)
+  export const randomDeck = cards.sort(() => 0.5 - Math.random()).slice(0, 30).sort((a, b) => {
+    const nameA = `${`0${a.cost}`.slice(-2)}${a.name.toUpperCase()}`;
+    const nameB = `${`0${b.cost}`.slice(-2)}${b.name.toUpperCase()}`;
+
+    return nameA.localeCompare(nameB, 'en');
+  })
 </script>
 
 <style>
