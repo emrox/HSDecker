@@ -32,6 +32,8 @@
   import { deckSort } from '../helper/deck.js';
   import Card from '../components/Card.svelte';
 
+  const capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+
   export let randomDeck;
   export let deckClass;
 </script>
@@ -52,7 +54,7 @@
 	<title>HSdecker</title>
 </svelte:head>
 
-<h1>Random Deck {deckClass}</h1>
+<h1>Random {capitalize(deckClass)} Deck</h1>
 
 <ul>
   {#each deckSort(randomDeck) as {count, card}}
