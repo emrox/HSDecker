@@ -8,7 +8,7 @@
 
     if (!deckCode) { return; }
     
-    goto(`/deck/${encodeURIComponent(deckCode)}`);
+    goto(`/deck/${deckCode}`);
   }
 </script>
 
