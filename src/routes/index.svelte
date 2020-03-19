@@ -1,6 +1,6 @@
 <script context="module">
   export async function preload(page, session) {
-    const cardsRes = await this.fetch('data/cards.json');
+    const cardsRes = await this.fetch('data/cards.collectible.json');
     const allCards = await cardsRes.json();
 
     const cards = allCards.reduce((acc, card) => {
