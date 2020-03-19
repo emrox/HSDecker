@@ -12,8 +12,17 @@
     const deckClass = classes.sort(() => 0.5 - Math.random())[0];
     const possibleCardClasses = ['NEUTRAL', deckClass];
     const classCards = cards.reduce((a, c) => { if(possibleCardClasses.includes(c.cardClass)) { a.push(c); }; return a; }, []);
+    const randomCards = classCards.sort(() => 0.5 - Math.random());
 
-    const randomDeck = classCards.sort(() => 0.5 - Math.random()).slice(0, 30);
+    let randomDeck = [];
+    const deckCardCount = (deck) => deck.reduce((a, c) => a + c.count, 0);
+
+    while(deckCardCount(randomDeck) < 30) {
+      randomDeck.push({
+        card: randomCards[randomDeck.length],
+        count: deckCardCount(randomDeck) >= 29 ? 1 : (Math.random() > 0.5 ? 1 : 2),
+      });
+    }
 
     return { deckClass, randomDeck };
   }
@@ -46,9 +55,9 @@
 <h1>Random Deck {deckClass}</h1>
 
 <ul>
-  {#each deckSort(randomDeck) as card}
+  {#each deckSort(randomDeck) as {count, card}}
     <li>
-      <Card count="1" card={card} />
+      <Card count={count} card={card} />
     </li>
   {/each}
 </ul>
