@@ -5,16 +5,34 @@
 
 <style>
 .card {
-  display: flex;
-  margin: 0.5em;
+  display: inline-flex;
+  margin: 0.1em;
+  text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 26px;
+  border: 1px solid #000;
 }
 
 h3 {
-  margin: 0 0.5em;
-  width: 10em;
+  position: relative;
+  margin: 0;
+  width: 200px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}
+
+h3 .fadeout {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  padding: 2px 7px;
+  font-size: 16px;
+  background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 75%);
 }
 
 blockquote {
@@ -26,13 +44,17 @@ blockquote {
 .attack,
 .health {
   display: inline-block;
-  width: 2em;
-  height: 2em;
-  font-size: 80%;
+  width: 26px;
+  height: 26px;
   text-align: center;
   color: whitesmoke;
 }
 
+.cost,
+.attack,
+.health {
+  border-left: 1px solid #000;
+}
 .count {
   background-color: darkblue;
 }
@@ -53,7 +75,11 @@ blockquote {
 <div class="card">
   <span class="count">{count || ''}</span>
 
-  <h3 title={card.name}>{card.name}</h3>
+  <h3 title={card.name} style="background-image: url('/tiles/Tiles/{card.id}.png')">
+    <div class="fadeout">
+      {card.name}
+    </div>
+  </h3>
 
   <blockquote>{@html card.text}</blockquote>
 
