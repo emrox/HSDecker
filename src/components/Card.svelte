@@ -1,6 +1,18 @@
 <script>
+  import tippy from 'tippy.js';
+  import { onMount } from 'svelte';
+
   export let card;
   export let count;
+
+  onMount(async () => {
+    tippy(`#card-${card.id}`, {
+      content: `<img src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${card.id}.png" />`,
+      allowHTML: true,
+      delay: [0, 0],
+      duration: 0
+    });
+  });
 </script>
 
 <style>
@@ -27,6 +39,7 @@ h3 {
 }
 
 h3 .fadeout {
+  cursor: default;
   position: absolute;
   height: 100%;
   width: 100%;
@@ -72,7 +85,7 @@ blockquote {
 }
 </style>
 
-<div class="card">
+<div class="card" id="card-{card.id}">
   <span class="count">{count || ''}</span>
 
   <h3 title={card.name} style="background-image: url('/tiles/Tiles/{card.id}.png')">

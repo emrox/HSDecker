@@ -1,4 +1,6 @@
 <script context="module">
+  // import 'tippy.js/dist/tippy.css';
+
   export async function preload(page, session) {
     const cardsRes = await this.fetch('data/cards.json');
     const allCards = await cardsRes.json();
