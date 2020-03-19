@@ -20,6 +20,10 @@
   }
 </style>
 
+<svelte:head>
+	<title>HSdecker :: Deckcode</title>
+</svelte:head>
+
 <form on:submit={gotoDeck}>
   <textarea id="gotoDeckInput"></textarea>
   <input type="submit" />

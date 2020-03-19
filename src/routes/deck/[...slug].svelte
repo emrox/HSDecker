@@ -46,7 +46,11 @@
   }
 </style>
 
-<h1>Deck Viewer</h1>
+<svelte:head>
+	<title>HSdecker :: Deckcode Viewer</title>
+</svelte:head>
+
+<h1>Deckcode Viewer</h1>
 
 <input type="text" value={deckCode} />
 
