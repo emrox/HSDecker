@@ -31,7 +31,7 @@
 <script>
   import { deckSort } from '../helper/deck.js';
   import { CLASS_HEROS } from '../helper/constants.js';
-  import Card from '../components/Card.svelte';
+  import Deck from '../components/Deck.svelte';
   import { encode } from 'deckstrings';
 
   const capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
@@ -53,16 +53,6 @@
     margin-bottom: 20px;
     width: 100%;
   }
-
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  li {
-    margin-bottom: 1px;
-  }
 </style>
 
 <svelte:head>
@@ -73,10 +63,4 @@
 
 <input type="text" value={deckCode} />
 
-<ul>
-  {#each deckSort(randomDeck) as {count, card}}
-    <li>
-      <Card count={count} card={card} />
-    </li>
-  {/each}
-</ul>
+<Deck deck={randomDeck} />

@@ -22,7 +22,7 @@
 </script>
 
 <script>
-  import Card from '../../components/Card.svelte';
+  import Deck from '../../components/Deck.svelte';
   import { deckSort } from '../../helper/deck.js';
 
   export let deck;
@@ -30,16 +30,6 @@
 </script>
 
 <style>
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  li {
-    margin-bottom: 1px;
-  }
-
   input {
     margin-bottom: 20px;
     width: 100%;
@@ -54,10 +44,4 @@
 
 <input type="text" value={deckCode} />
 
-<ul>
-  {#each deckSort(deck) as { card, count }}
-    <li>
-      <Card count={count} card={card} />
-    </li>
-  {/each}
-</ul>
+<Deck deck={deck} />
