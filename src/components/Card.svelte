@@ -16,7 +16,7 @@
 </script>
 
 <style>
-.card {
+.list-card {
   display: inline-flex;
   margin: 0;
   text-shadow: -1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000;
@@ -38,8 +38,8 @@ h3 {
   color: white;
 }
 
-.card.type--spell h3 {
-  width: 254px;
+.list-card.type--spell h3 {
+  width: 252px;
 }
 
 h3 .fadeout {
@@ -92,7 +92,7 @@ h3 .fadeout {
 .rarity--legendary { background-color: #855c25; }
 </style>
 
-<div class="card type--{card.type.toLowerCase()}" id="card-{card.id}">
+<div class="list-card type--{card.type.toLowerCase()}" id="card-{card.id}">
   <span class="cost rarity--{card.rarity.toLowerCase()}" title={card.rarity}>{card.cost || '0'}</span>
 
   <h3 title={card.name} style="background-image: url('/tiles/Tiles/{card.id}.png')">
