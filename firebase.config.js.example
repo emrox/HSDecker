@@ -1,0 +1,10 @@
+export const firebaseConfig = {
+  apiKey: 'qwe',
+  authDomain: 'myapp.firebaseapp.com',
+  databaseURL: 'https://myapp.firebaseio.com',
+  projectId: 'myapp',
+  storageBucket: 'myapp.appspot.com',
+  messagingSenderId: '1234567',
+  appId: '1:1234567:web:loremipsum',
+  measurementId: 'G-ABCDEF1234',
+}
