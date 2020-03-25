@@ -12,6 +12,7 @@
     "test": "run-p --race dev cy:run"
   },
   "dependencies": {
+    "@popperjs/core": "^2.1.1",
     "compression": "^1.7.1",
     "deckstrings": "^2.1.0",
     "firebase": "^7.12.0",

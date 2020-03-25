@@ -1,12 +1,11 @@
 <script>
+  import { currentUser } from '../../stores/currentUser.store';
+
+  import Authmenu from './Authmenu.svelte';
+  import Usermenu from './Usermenu.svelte';
+
   export let segment;
 </script>
-
-<style>
-  .dropdown-menu-login {
-    width: 300px;
-  }
-</style>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="/">HSDecker</a>
@@ -25,27 +24,11 @@
     </ul>
 
     <ul class="navbar-nav">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="/" id="navbarDropdownLogin" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          login
-        </a>
-
-        <div class="dropdown-menu dropdown-menu-right dropdown-menu-login" aria-labelledby="navbarDropdownLogin">
-          <form class="px-4 py-8">
-            <div class="form-group">
-              <label for="exampleDropdownFormEmail1">Email address</label>
-              <input type="email" class="form-control" placeholder="email@example.com">
-            </div>
-
-            <div class="form-group">
-              <label for="exampleDropdownFormPassword1">Password</label>
-              <input type="password" class="form-control" placeholder="Password">
-            </div>
-
-            <button type="submit" class="btn btn-primary">Register</button>
-          </form>
-        </div>
-      </li>
+      {#if $currentUser.status === 'in'}
+        <Usermenu />
+      {:else}
+        <Authmenu />
+      {/if}
     </ul>
   </div>
 </nav>
