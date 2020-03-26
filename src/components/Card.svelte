@@ -1,12 +1,18 @@
 <script>
   import tippy from 'tippy.js';
-  import { onMount } from 'svelte';
+  import { afterUpdate } from 'svelte';
 
   export let card;
   export let count = null;
 
-  onMount(async () => {
-    tippy(`#card-${card.id}`, {
+  let tippyInstance;
+
+  afterUpdate(() => {
+    if (tippyInstance && tippyInstance[0]) {
+      tippyInstance[0].destroy();
+    }
+
+    tippyInstance = tippy(`#card-${card.id}`, {
       content: `<img src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${card.id}.png" />`,
       allowHTML: true,
       delay: [0, 0],
