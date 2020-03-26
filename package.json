@@ -9,7 +9,8 @@
     "start": "node __sapper__/build",
     "cy:run": "cypress run",
     "cy:open": "cypress open",
-    "test": "run-p --race dev cy:run"
+    "test": "run-p --race dev cy:run",
+    "simplify-card-db": "node src/simplify_card_db.js"
   },
   "dependencies": {
     "@popperjs/core": "^2.1.1",
