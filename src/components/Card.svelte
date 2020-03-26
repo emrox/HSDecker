@@ -3,7 +3,7 @@
   import { onMount } from 'svelte';
 
   export let card;
-  export let count;
+  export let count = null;
 
   onMount(async () => {
     tippy(`#card-${card.id}`, {
@@ -105,5 +105,8 @@ h3 .fadeout {
     <span class="attack">{card.attack || '0'}</span>
     <span class="health">{card.health || card.durability || '-'}</span>
   {/if}
-  <span class="count">{card.rarity === 'LEGENDARY' ? '⭐' : count }</span>
+
+  {#if count}
+    <span class="count">{card.rarity === 'LEGENDARY' ? '⭐' : count }</span>
+  {/if}
 </div>
