@@ -10,6 +10,7 @@
     "cy:run": "cypress run",
     "cy:open": "cypress open",
     "test": "run-p --race dev cy:run",
+    "download-card-db": "node src/download_card_db.js",
     "simplify-card-db": "node src/simplify_card_db.js"
   },
   "dependencies": {
