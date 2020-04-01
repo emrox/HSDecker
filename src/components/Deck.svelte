@@ -8,6 +8,7 @@
 <script>
   import { deckSort } from '../helper/deck.js';
   import Card from '../components/Card.svelte';
+  import ManaCurve from '../components/ManaCurve.svelte';
 
   export let deck;
 </script>
@@ -19,15 +20,25 @@
     padding: 0;
   }
 
-  li {
+  ul li {
     margin-bottom: 1px;
   }
 </style>
 
-<ul>
-  {#each deckSort(deck) as {count, card}}
-    <li>
-      <Card count={count} card={card} />
-    </li>
-  {/each}
-</ul>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm">
+      <ul>
+        {#each deckSort(deck) as {count, card}}
+          <li>
+            <Card count={count} card={card} />
+          </li>
+        {/each}
+      </ul>
+    </div>
+
+    <div class="col-sm">
+      <ManaCurve deck={deck} />
+    </div>
+  </div>
+</div>
