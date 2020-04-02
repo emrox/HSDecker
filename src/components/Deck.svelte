@@ -9,6 +9,7 @@
   import { deckSort } from '../helper/deck.js';
   import Card from '../components/Card.svelte';
   import ManaCurve from '../components/ManaCurve.svelte';
+  import DeckStats from '../components/DeckStats.svelte';
 
   export let deck;
 </script>
@@ -39,6 +40,7 @@
 
     <div class="col-sm">
       <ManaCurve deck={deck} />
+      <DeckStats deck={deck} />
     </div>
   </div>
 </div>
