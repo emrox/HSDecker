@@ -10,6 +10,7 @@
   import Card from '../components/Card.svelte';
   import ManaCurve from '../components/ManaCurve.svelte';
   import DeckStats from '../components/DeckStats.svelte';
+  import DeckDust from '../components/DeckDust.svelte';
 
   export let deck;
 </script>
@@ -23,6 +24,16 @@
 
   ul li {
     margin-bottom: 1px;
+  }
+
+  .right-side {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .right-side > div {
+    margin-bottom: 12px;
   }
 </style>
 
@@ -38,9 +49,10 @@
       </ul>
     </div>
 
-    <div class="col-sm">
-      <ManaCurve deck={deck} />
-      <DeckStats deck={deck} />
+    <div class="col-sm right-side">
+      <div><DeckDust deck={deck} /></div>
+      <div><ManaCurve deck={deck} /></div>
+      <div><DeckStats deck={deck} /></div>
     </div>
   </div>
 </div>
