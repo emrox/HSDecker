@@ -22,7 +22,7 @@
 </script>
 
 <script>
-  import Deck from '../../components/Deck.svelte';
+  import Deck from '../../components/Deck/Deck.svelte';
   import { deckSort } from '../../helper/deck.js';
 
   export let deck;

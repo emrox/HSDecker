@@ -31,7 +31,7 @@
 <script>
   import { deckSort } from '../helper/deck.js';
   import { CLASS_HEROS } from '../helper/constants.js';
-  import Deck from '../components/Deck.svelte';
+  import Deck from '../components/Deck/Deck.svelte';
   import { encode } from 'deckstrings';
 
   const capitalize = (string) => string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
