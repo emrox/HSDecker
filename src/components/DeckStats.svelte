@@ -25,7 +25,7 @@
       {
         type: 'pie',
         data: {
-            labels: labels,
+            labels: labels.map((label, index) => `${datapoints[index]} ${label}`),
             datasets: [{
                 data: datapoints.map((dp) => dp > 0 ? dp : undefined),
                 backgroundColor: baseColors.map((c) => `rgba(${c}, 0.4)`),
