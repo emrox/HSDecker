@@ -21,4 +21,5 @@ export const CLASS_HEROS = {
   'SHAMAN': [1066],
   'WARRIOR': [7],
   'PALADIN': [671],
+  'DEMONHUNTER': [56550],
 };
