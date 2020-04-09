@@ -24,7 +24,7 @@
 
 <script>
   import { buildUrl } from '../../helper/url.js';
-  import CollectionNav from './_nav.svelte';
+  import CollectionNav from '../../components/Collection/Nav.svelte';
 
   export let activeHeroClass;
   export let classCards;

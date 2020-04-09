@@ -1,5 +1,5 @@
 <script>
-  import CollectionNav from './_nav.svelte';
+  import CollectionNav from '../../components/Collection/Nav.svelte';
 </script>
 
 <CollectionNav activeHeroClass={null} />
