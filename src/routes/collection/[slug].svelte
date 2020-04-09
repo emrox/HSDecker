@@ -23,6 +23,7 @@
 </script>
 
 <script>
+  import { buildUrl } from '../../helper/url.js';
   import CollectionNav from './_nav.svelte';
 
   export let activeHeroClass;
@@ -39,8 +40,9 @@
     const baseSlice = (currentPage - 1) * cardsPerPage;
     displayCards = classCards.slice(baseSlice, baseSlice + cardsPerPage);
 
-    prevPageLink = `/collection/${activeHeroClass}?page=${currentPage > 1 ? currentPage - 1 : 1}`;
-    nextPageLink = `/collection/${activeHeroClass}?page=${currentPage + 1}`;
+    const baseLink = `/collection/${activeHeroClass}`;
+    prevPageLink = buildUrl(baseLink, { page: currentPage > 1 ? currentPage - 1 : 1 });
+    nextPageLink = buildUrl(baseLink, { page: currentPage + 1 });
   };
 </script>
 
