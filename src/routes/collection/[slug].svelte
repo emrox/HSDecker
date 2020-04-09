@@ -23,8 +23,8 @@
 </script>
 
 <script>
-  import { buildUrl } from '../../helper/url.js';
   import CollectionNav from '../../components/Collection/Nav.svelte';
+  import Pagination from '../../components/Collection/Pagination.svelte';
 
   export let activeHeroClass;
   export let classCards;
@@ -33,16 +33,10 @@
   const cardsPerPage = 8;
 
   let displayCards;
-  let prevPageLink;
-  let nextPageLink;
   
   $: {
     const baseSlice = (currentPage - 1) * cardsPerPage;
     displayCards = classCards.slice(baseSlice, baseSlice + cardsPerPage);
-
-    const baseLink = `/collection/${activeHeroClass}`;
-    prevPageLink = buildUrl(baseLink, { page: currentPage > 1 ? currentPage - 1 : 1 });
-    nextPageLink = buildUrl(baseLink, { page: currentPage + 1 });
   };
 </script>
 
@@ -64,18 +58,4 @@
   </div>
 </div>
 
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item" class:disabled={currentPage <= 1}>
-      <a class="page-link" href="{prevPageLink}" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-
-    <li class="page-item" class:disabled={currentPage * cardsPerPage > classCards.length}>
-      <a class="page-link" href="{nextPageLink}" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+<Pagination classCards={classCards} activeHeroClass={activeHeroClass} currentPage={currentPage} />
