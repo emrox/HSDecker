@@ -1,5 +1,8 @@
 <script>
-  import CollectionNav from '../../components/Collection/Nav.svelte';
-</script>
+  import { goto } from '@sapper/app';
+  import { onMount } from 'svelte';
 
-<CollectionNav activeHeroClass={null} />
+  onMount(() => {
+    goto('/collection/demonhunter');
+  });
+</script>
