@@ -7,6 +7,7 @@ export async function getCards (context, reduce = true) {
   const cards = allCards.reduce((acc, card) => {
     if (
       card.collectible &&
+      card.set !== 'HERO_SKINS' &&
       (
         (card.type === 'HERO' && card.cost) ||
         (card.type === 'MINION') ||
