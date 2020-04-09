@@ -13,7 +13,7 @@
   $: {
     const baseLink = `/collection/${activeHeroClass}`;
 
-    prevPageLink = buildUrl(baseLink, { page: currentPage > 1 ? currentPage - 1 : 1 });
+    prevPageLink = buildUrl(baseLink, { page: currentPage > 2 ? currentPage - 1 : undefined });
     nextPageLink = buildUrl(baseLink, { page: currentPage + 1 });
   }
 </script>
