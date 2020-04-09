@@ -47,7 +47,7 @@
 </script>
 
 <style>
-  .card img {
+  .hscard img {
     max-width: 100%;
   }
 </style>
@@ -57,7 +57,7 @@
 <div class="container">
   <div class="row">
       {#each displayCards as classCard}
-        <div class="card col-3">
+        <div class="col-3 hscard">
           <img src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{classCard.id}.png" alt="{classCard.name}" />
         </div>
       {/each}
