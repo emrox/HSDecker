@@ -6,7 +6,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import { firebaseConfig } from '../firebase.config';
 
-import { currentUser } from './stores/currentUser.store';
+import { currentUser, defaultLoggedOutUserObject } from './stores/currentUser.store';
 
 firebase.initializeApp(firebaseConfig);
 
@@ -16,11 +16,9 @@ firebase.auth().onAuthStateChanged((user) => {
       user: user,
       loggedIn: true,
       email: user.email,
-    })
+    });
   } else {
-    currentUser.set({
-      loggedIn: false,
-    })
+    currentUser.set(defaultLoggedOutUserObject);
   }
 });
 

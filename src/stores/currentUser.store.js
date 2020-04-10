@@ -1,3 +1,5 @@
 import { writable } from 'svelte/store';
 
-export const currentUser = writable({ loggedIn: false });
+export const defaultLoggedOutUserObject = { loggedIn: false };
+
+export const currentUser = writable(defaultLoggedOutUserObject);
