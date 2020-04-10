@@ -164,9 +164,9 @@
           {#if $currentUser.loggedIn}
             <div class="ctrl-container">
               <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-sm btn-warning ctrl-plus" on:click={addCardToCollection(classCard.id)}>+</button>
-                <button type="button" class="btn btn-sm btn-light ctrl-cnt" disabled>{$userCards[classCard.id] || '0'}</button>
                 <button type="button" class="btn btn-sm btn-warning ctrl-minus" on:click={removeCardFromCollection(classCard.id)}>-</button>
+                <button type="button" class="btn btn-sm btn-light ctrl-cnt" disabled>{$userCards[classCard.id] || '0'}</button>
+                <button type="button" class="btn btn-sm btn-warning ctrl-plus" on:click={addCardToCollection(classCard.id)}>+</button>
               </div>
             </div>
           {/if}
