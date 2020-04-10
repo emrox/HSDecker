@@ -41,6 +41,7 @@
   let displayCards;
   let userCardCollection;
   let shownSet = 'STANDARD';
+  let filteredClassCards;
 
   const addCardToCollection = (cardId) => {
     if (!$currentUser.loggedIn) { return; }
@@ -103,7 +104,8 @@
   
   $: {
     const baseSlice = (currentPage - 1) * cardsPerPage;
-    displayCards = filterCardSet(classCards, shownSet).slice(baseSlice, baseSlice + cardsPerPage);
+    filteredClassCards = filterCardSet(classCards, shownSet);
+    displayCards = filteredClassCards.slice(baseSlice, baseSlice + cardsPerPage);
 
     if ($currentUser.loggedIn && !$userCards._initialized) {
       initializeUserCards();
@@ -177,7 +179,7 @@
 
 <div class="tools">
   <div class="tool pagination">
-    <Pagination classCards={classCards} activeHeroClass={activeHeroClass} currentPage={currentPage} />
+    <Pagination classCards={filteredClassCards} activeHeroClass={activeHeroClass} currentPage={currentPage} />
   </div>
 
   <div class="tool cardchooser">
