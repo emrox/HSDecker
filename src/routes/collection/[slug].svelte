@@ -23,6 +23,9 @@
 </script>
 
 <script>
+  import { currentUser } from '../../stores/currentUser.store';
+  import { userCards } from '../../stores/userCards.store';
+
   import CollectionNav from '../../components/Collection/Nav.svelte';
   import Pagination from '../../components/Collection/Pagination.svelte';
 
@@ -33,10 +36,45 @@
   const cardsPerPage = 8;
 
   let displayCards;
+  let userCardCollection;
+
+  const addCardToCollection = (cardId) => {
+    if (!$currentUser.loggedIn) { return; }
+
+    if ($userCards[cardId]) {
+      $userCards[cardId] = 2;
+    } else {
+      $userCards[cardId] = 1;
+    }
+
+    $currentUser.cardCollection.set($userCards);
+  };
+
+  const removeCardFromCollection = (cardId) => {
+    if (!$currentUser.loggedIn) { return; }
+    if (!$userCards[cardId]) { return; }
+
+    $userCards[cardId] = $userCards[cardId] - 1;
+    $currentUser.cardCollection.set($userCards);
+  };
   
   $: {
     const baseSlice = (currentPage - 1) * cardsPerPage;
     displayCards = classCards.slice(baseSlice, baseSlice + cardsPerPage);
+
+    if ($currentUser.loggedIn && !$userCards._initialized) {
+      $currentUser.cardCollection.get().then((doc) => {
+        if (doc.exists) {
+          userCards.set(doc.data());
+        } else {
+          userCards.set({ _initialized: true });
+        }
+      });
+    }
+
+    if (!$currentUser.loggedIn) {
+      userCards.set({});
+    }
   };
 </script>
 
@@ -78,13 +116,15 @@
         <div class="col-3 hscard">
           <img src="https://art.hearthstonejson.com/v1/render/latest/enUS/256x/{classCard.id}.png" alt="{classCard.name}" />
 
-          <div class="ctrl-container">
-            <div class="btn-group" role="group" aria-label="Basic example">
-              <button type="button" class="btn btn-sm btn-warning ctrl-plus">+</button>
-              <button type="button" class="btn btn-sm btn-light ctrl-cnt" disabled>0</button>
-              <button type="button" class="btn btn-sm btn-warning ctrl-minus">-</button>
+          {#if $currentUser.loggedIn}
+            <div class="ctrl-container">
+              <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-sm btn-warning ctrl-plus" on:click={addCardToCollection(classCard.id)}>+</button>
+                <button type="button" class="btn btn-sm btn-light ctrl-cnt" disabled>{$userCards[classCard.id] || '0'}</button>
+                <button type="button" class="btn btn-sm btn-warning ctrl-minus" on:click={removeCardFromCollection(classCard.id)}>-</button>
+              </div>
             </div>
-          </div>
+          {/if}
         </div>
       {/each}
   </div>

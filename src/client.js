@@ -12,10 +12,15 @@ firebase.initializeApp(firebaseConfig);
 
 firebase.auth().onAuthStateChanged((user) => {
   if (user) {
+    const db = firebase.firestore();
+    const userCardCollection = db.collection('userCards');
+
     currentUser.set({
       user: user,
       loggedIn: true,
       email: user.email,
+      id: user.uid,
+      cardCollection: userCardCollection.doc(user.uid),
     });
   } else {
     currentUser.set(defaultLoggedOutUserObject);
