@@ -26,7 +26,7 @@
       </a>
     </li>
 
-    <li class="page-item" class:disabled={currentPage * cardsPerPage > classCards.length}>
+    <li class="page-item" class:disabled={currentPage * cardsPerPage >= classCards.length}>
       <a class="page-link" href="{nextPageLink}" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
