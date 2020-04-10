@@ -57,19 +57,23 @@
     $userCards[cardId] = $userCards[cardId] - 1;
     $currentUser.cardCollection.set($userCards);
   };
+
+  const initializeUserCards = () => {
+    $currentUser.cardCollection.get().then((doc) => {
+      if (doc.exists) {
+        userCards.set(doc.data());
+      } else {
+        userCards.set({ _initialized: true });
+      }
+    });
+  }
   
   $: {
     const baseSlice = (currentPage - 1) * cardsPerPage;
     displayCards = classCards.slice(baseSlice, baseSlice + cardsPerPage);
 
     if ($currentUser.loggedIn && !$userCards._initialized) {
-      $currentUser.cardCollection.get().then((doc) => {
-        if (doc.exists) {
-          userCards.set(doc.data());
-        } else {
-          userCards.set({ _initialized: true });
-        }
-      });
+      initializeUserCards();
     }
 
     if (!$currentUser.loggedIn) {
