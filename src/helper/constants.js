@@ -1,8 +1,29 @@
-export const STANDARD_SETS = [
-  'CORE', 'EXPERT1',
-  'DALARAN', 'ULDUM', 'WILD_EVENT', 'DRAGONS',
-  'YEAR_OF_THE_DRAGON', 'BLACK_TEMPLE', 'DEMON_HUNTER_INITIATE'
-];
+export const CARD_SETS = {
+  'DEMON_HUNTER_INITIATE': { name: 'Demon Hunter Initiate', inStandard: true },
+  'BLACK_TEMPLE': { name: 'Ashes of Outland', inStandard: true },
+  'YEAR_OF_THE_DRAGON': { name: 'Galakrond\'s Awakening', inStandard: true },
+  'DRAGONS': { name: 'Descent of Dragons', inStandard: true },
+  'ULDUM': { name: 'Saviors of Uldum', inStandard: true },
+  'DALARAN': { name: 'Rise of Shadows', inStandard: true },
+  'CORE': { name: 'Basic', inStandard: true },
+  'EXPERT1': { name: 'Classic', inStandard: true },
+
+  'TROLL': { name: 'Rastakhan\'s Rumble', inStandard: false },
+  'BOOMSDAY': { name: 'The Boomsday Project', inStandard: false },
+  'GILNEAS': { name: 'The Witchwood', inStandard: false },
+  'LOOTAPALOOZA': { name: 'Kobolds & Catacombs', inStandard: false },
+  'ICECROWN': { name: 'Knights of the Frozen Throne', inStandard: false },
+  'UNGORO': { name: 'Journey to Un\'Goro', inStandard: false },
+  'GANGS': { name: 'Mean Streets of Gadgetzan', inStandard: false },
+  'KARA': { name: 'One Night in Karazhan', inStandard: false },
+  'OG': { name: 'Whispers of the Old Gods', inStandard: false },
+  'LOE': { name: 'League of Explorers', inStandard: false },
+  'TGT': { name: 'The Grand Tournament', inStandard: false },
+  'BRM': { name: 'Blackrock Mountain', inStandard: false },
+  'GVG': { name: 'Goblins vs Gnomes', inStandard: false },
+  'NAXX': { name: 'Curse of Naxxramas', inStandard: false },
+  'HOF': { name: 'Hall of Fame', inStandard: false },
+};
 
 export const CLASS_HEROS = {
   'MAGE': [637],

@@ -26,8 +26,11 @@
   import { currentUser } from '../../stores/currentUser.store';
   import { userCards } from '../../stores/userCards.store';
 
+  import { CARD_SETS } from '../../helper/constants.js';
+
   import CollectionNav from '../../components/Collection/Nav.svelte';
   import Pagination from '../../components/Collection/Pagination.svelte';
+  import CardSetChooser from '../../components/Collection/CardSetChooser.svelte';
 
   export let activeHeroClass;
   export let classCards;
@@ -37,6 +40,7 @@
 
   let displayCards;
   let userCardCollection;
+  let shownSet = 'STANDARD';
 
   const addCardToCollection = (cardId) => {
     if (!$currentUser.loggedIn) { return; }
@@ -66,11 +70,40 @@
         userCards.set({ _initialized: true });
       }
     });
-  }
+  };
+
+  const filterCardSet = (cards, set) => {
+    if (set === 'ALL') {
+      return cards;
+    }
+
+    const standardSets = Object.entries(CARD_SETS).reduce((sets, [setId, set]) => {
+      if (set.inStandard) {
+        sets.push(setId);
+      }
+
+      return sets;
+    });
+
+    return cards.reduce((filteredCards, card) => {
+      if (
+        (set === 'STANDARD' && standardSets.includes(card.set)) ||
+        card.set === set
+      ) {
+        filteredCards.push(card);
+      }
+
+      return filteredCards;
+    }, []);
+  };
+
+  const changeChoosenCardset = (event) => {
+    shownSet = event.detail;
+  };
   
   $: {
     const baseSlice = (currentPage - 1) * cardsPerPage;
-    displayCards = classCards.slice(baseSlice, baseSlice + cardsPerPage);
+    displayCards = filterCardSet(classCards, shownSet).slice(baseSlice, baseSlice + cardsPerPage);
 
     if ($currentUser.loggedIn && !$userCards._initialized) {
       initializeUserCards();
@@ -83,7 +116,7 @@
 </script>
 
 <style>
-  .container {
+  .cards {
     margin-bottom: 20px;
   }
 
@@ -110,11 +143,19 @@
   .ctrl-minus {
     width: 30px;
   }
+
+  .tools {
+    display: flex;
+  }
+
+  .tools .tool {
+    margin-right: 20px;
+  }
 </style>
 
 <CollectionNav activeHeroClass={activeHeroClass} />
 
-<div class="container">
+<div class="container cards">
   <div class="row">
       {#each displayCards as classCard}
         <div class="col-3 hscard">
@@ -134,4 +175,12 @@
   </div>
 </div>
 
-<Pagination classCards={classCards} activeHeroClass={activeHeroClass} currentPage={currentPage} />
+<div class="tools">
+  <div class="tool pagination">
+    <Pagination classCards={classCards} activeHeroClass={activeHeroClass} currentPage={currentPage} />
+  </div>
+
+  <div class="tool cardchooser">
+    <CardSetChooser shownSet={shownSet} on:chooseCardSet={changeChoosenCardset} />
+  </div>
+</div>
