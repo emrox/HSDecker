@@ -14,12 +14,12 @@ firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     currentUser.set({
       user: user,
-      status: 'in',
+      loggedIn: true,
       email: user.email,
     })
   } else {
     currentUser.set({
-      status: 'out',
+      loggedIn: false,
     })
   }
 });

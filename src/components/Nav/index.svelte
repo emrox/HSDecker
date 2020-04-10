@@ -26,7 +26,7 @@
     </ul>
 
     <ul class="navbar-nav">
-      {#if $currentUser.status === 'in'}
+      {#if $currentUser.loggedIn}
         <Usermenu />
       {:else}
         <Authmenu />
