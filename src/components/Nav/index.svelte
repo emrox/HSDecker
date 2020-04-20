@@ -19,10 +19,6 @@
       <li class="nav-item" class:active={segment === 'deck'}><a class="nav-link" href="deck">deck</a></li>
       <li class="nav-item" class:active={segment === 'card'}><a class="nav-link" href="card">card</a></li>
       <li class="nav-item" class:active={segment === 'collection'}><a class="nav-link" href="collection">collection</a></li>
-
-      <!-- for the blog link, we're using rel=prefetch so that Sapper prefetches
-          the blog data when we hover over the link or tap it on a touchscreen -->
-      <li class="nav-item" class:active={segment === 'blog'}><a class="nav-link" href="blog">blog</a></li>
     </ul>
 
     <ul class="navbar-nav">
