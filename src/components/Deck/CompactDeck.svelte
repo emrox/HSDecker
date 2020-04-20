@@ -1,4 +1,7 @@
 <script>
+  import { currentUser } from '../../stores/currentUser.store';
+  import { userCards } from '../../stores/userCards.store';
+
   import Card from '../Card.svelte';
   import ManaCurve from './ManaCurve.svelte';
   import DeckStats from './DeckStats.svelte';
@@ -16,7 +19,25 @@
   }
 
   ul li {
+    display: flex;
     margin-bottom: 1px;
+  }
+
+  .card-collection-check {
+    width: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 26px;
+    cursor: default;
+  }
+
+  .card-collection-check--ok {
+    background-color: #E0EFCB;
+  }
+
+  .card-collection-check--missing {
+    background-color: #F08080;
   }
 
   .right-side {
@@ -36,6 +57,15 @@
       {#each deck as {count, card}}
         <li>
           <Card count={count} card={card} />
+          {#if $currentUser.loggedIn}
+            {#if $userCards[card.id] >= count}
+              <div class="card-collection-check card-collection-check--ok" title="you have the card(s) in your collection">✔</div>
+            {:else}
+              <div class="card-collection-check card-collection-check--missing" title="number of times the card  is missing in your collection">
+                {count - ($userCards[card.id] || 0)}
+              </div>
+            {/if}
+          {/if}
         </li>
       {/each}
     </ul>
