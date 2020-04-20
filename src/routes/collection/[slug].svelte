@@ -63,16 +63,6 @@
     $currentUser.cardCollection.set($userCards);
   };
 
-  const initializeUserCards = () => {
-    $currentUser.cardCollection.get().then((doc) => {
-      if (doc.exists) {
-        userCards.set(doc.data());
-      } else {
-        userCards.set({ _initialized: true });
-      }
-    });
-  };
-
   const filterCardSet = (cards, set) => {
     if (set === 'ALL') {
       return cards;
@@ -106,14 +96,6 @@
     const baseSlice = (currentPage - 1) * cardsPerPage;
     filteredClassCards = filterCardSet(classCards, shownSet);
     displayCards = filteredClassCards.slice(baseSlice, baseSlice + cardsPerPage);
-
-    if ($currentUser.loggedIn && !$userCards._initialized) {
-      initializeUserCards();
-    }
-
-    if (!$currentUser.loggedIn) {
-      userCards.set({});
-    }
   };
 </script>
 
