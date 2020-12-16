@@ -7,6 +7,7 @@
   const dispatch = createEventDispatcher();
 </script>
 
+<!-- svelte-ignore a11y-no-onchange -->
 <select class="custom-select" bind:value={shownSet} on:change="{(event) => dispatch('chooseCardSet', event.target.value)}">
   <optgroup label="Sets">
     <option value="STANDARD">Standard Cards</option>
