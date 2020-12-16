@@ -1,4 +1,6 @@
 export const CARD_SETS = {
+  'DARKMOON_FAIRE': { name: 'Madness at the Darkmoon Faire', inStandard: true },
+  'SCHOLOMANCE': { name: 'Scholomance Academy', inStandard: true },
   'DEMON_HUNTER_INITIATE': { name: 'Demon Hunter Initiate', inStandard: true },
   'BLACK_TEMPLE': { name: 'Ashes of Outland', inStandard: true },
   'YEAR_OF_THE_DRAGON': { name: 'Galakrond\'s Awakening', inStandard: true },
